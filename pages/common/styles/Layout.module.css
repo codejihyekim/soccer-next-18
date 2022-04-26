@@ -5,7 +5,7 @@
 }
 
 .main {
-  width: 900px;
+  width: 100%;
   min-height: 600px;
   padding: 0.2rem 0;
   flex: 1;
@@ -15,7 +15,7 @@
 }
 
 .footer {
-  width: 900px;
+  width: 100%;
   display: flex;
   flex: 1;
   padding: 2rem 0;
