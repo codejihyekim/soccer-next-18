@@ -4,7 +4,7 @@ import { useEffect ,useState} from "react"
 import axios from "axios"
 
 export default function BoardList(){
-    const columns = ["글번호", "제목", "작성자", "주제"]
+    const columns = [ "제목", "작성자", "주제", "내용"]
     const [data, setData] = useState([])
     const count = data.length
     useEffect(()=>{
