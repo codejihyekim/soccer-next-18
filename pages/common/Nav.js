@@ -100,7 +100,7 @@ export default function Nav(){
   
 
   return (
-    <AppBar position="static" >
+    <AppBar position="static" style={{marginBottom:"70px"}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -125,7 +125,7 @@ export default function Nav(){
 
           
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {pages.map((page) => ( //전체 네비
               <Button
                 key={page}
                 onClick={()=>handleClick(page)}
@@ -145,7 +145,7 @@ export default function Nav(){
             </Tooltip>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSojHl4I5WF8e-TSzGQ-NlW5moCUMCny75Vw&usqp=CAU" />
+                <Avatar alt="Remy Sharp" src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2020/08/urbanbrush-20200821001006257893.jpg" />
               </IconButton>
             </Tooltip>
             <Menu

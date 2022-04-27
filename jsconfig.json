@@ -3,12 +3,7 @@
       "baseUrl": "./pages",
       "paths":{"@/*": ["*"]}
   },
-  "include": [
-      "pages/**/*.js",
-      "redux/**/*.ts"
-    ],
     "exclude": [
       "node_modules",
-      "**/*.spec.ts"
     ]
 }

@@ -5,6 +5,7 @@ import * as T from "../types"
 
 function* addUser(action){
     try{
+        alert('>>> saga 인지함 ')
         const newUser = yield response.json()
         yield put({
             type: T.USER_ADD_SUCCESSED,
@@ -18,5 +19,24 @@ function* addUser(action){
     }
 }
 export function* watchAddUser(){
-    yield takeLatest(T.USER_ADD_REQUESTED, addUser)
+    yield takeLatest(T.LOGIN_REQUESTED, addUser)
+}
+
+function* login(action){
+    try{
+      const res = yield call(loginAPI, action.data)
+      yield put({
+        type: T.LOGIN_SUCCESS,
+        data: res.data
+      })
+    } catch (err) {
+      yield put({
+        type: T.LOGIN_FAIL,
+        error: err.response.data
+      })
+    }
+  }
+
+export function* watchLogin(){
+    yield takeLatest(T.LOGIN_REQUESTED, login)
 }

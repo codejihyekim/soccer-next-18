@@ -1,7 +1,61 @@
 import React,{useState} from 'react'
 import { useDispatch } from 'react-redux';
 import { userActions } from '../../redux/reducers/userReducer.ts';
+import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import tableStyles from '../common/styles/table.module.css'
+import {AdapterDateFns} from '@mui/x-date-pickers/AdapterDateFns';
+import TextField from '@mui/material/TextField';
+import {styled} from '@mui/material/styles';
+import {purple} from '@mui/material/colors';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+
+const BootstrapButton = styled(Button)({
+    boxShadow: 'none',
+    textTransform: 'none',
+    fontSize: 16,
+    padding: '6px 12px',
+    border: '1px solid',
+    lineHeight: 1.5,
+    backgroundColor: '#0063cc',
+    borderColor: '#0063cc',
+    fontFamily: [
+        '-apple-system',
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"'
+    ].join(','),
+    '&:hover': {
+        backgroundColor: '#0069d9',
+        borderColor: '#0062cc',
+        boxShadow: 'none'
+    },
+    '&:active': {
+        boxShadow: 'none',
+        backgroundColor: '#0062cc',
+        borderColor: '#005cbf'
+    },
+    '&:focus': {
+        boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)'
+    }
+});
+const ColorButton = styled(Button)(({theme}) => ({
+    color: theme
+        .palette
+        .getContrastText(purple[500]),
+    backgroundColor: purple[500],
+    '&:hover': {
+        backgroundColor: purple[700]
+    }
+}));
+
+
 export default function  Join(){
     const [user, setUser] =useState({
         userid:'', password:'', email:'', name:'', phone:'', birth:'', address:''
@@ -24,48 +78,22 @@ export default function  Join(){
         }
     }
     >
-        <table className={tableStyles.table}>
-            <thead>
-                <tr>
-                    <th colSpan={2}><h1>회원가입</h1></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><b>사용자ID</b></td>
-                    <td><input type="text" name='userid' onChange={handleChange} /></td>
-                </tr>
-                <tr>
-                    <td><b>비밀번호</b></td>
-                    <td><input type="text" name='password' onChange={handleChange}/></td>
-                </tr>
-                <tr>
-                    <td htmlFor=""><b>이메일</b></td>
-                    <td><input type="text" name='email' onChange={handleChange}/></td>
-                </tr>
-
-                <tr>
-                    <td htmlFor=""><b>이름</b></td>
-                    <td><input type="text" name='name' onChange={handleChange}/></td>
-                </tr>
-
-                <tr>
-                    <td><b>전화번호</b></td>
-                    <td><input type="text" name='phone' onChange={handleChange}/></td>
-                </tr>
-
-                <tr>
-                    <td><b>생년월일</b></td>
-                    <td><input type="text" name='birth' onChange={handleChange}/></td>
-                </tr>
-                <tr>
-                    <td><b>주소</b></td>
-                    <td><input type="text" name='address' onChange={handleChange}/></td>
-                </tr>
-                <tr>
-                    <td colSpan={2}><button type="submit">회원가입</button><br /></td>
-                </tr>
-            </tbody>
-        </table>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+    <Stack spacing={2} style={{width:"600px"}}>
+        <TextField id="outlined-basic" label="userid" />
+        <TextField id="outlined-basic-2" label="password" />
+        <TextField id="outlined-basic-2" label="email" />
+        <TextField id="outlined-basic-2" label="name" />
+        <TextField id="outlined-basic-2" label="phone" />
+        <TextField id="outlined-basic-2" label="birth" />
+        <TextField id="outlined-basic-2" label="address"/>
+    </Stack>
+    <Stack spacing={2} direction="row" style={{marginTop:"20px", float: "right"}}>
+        <ColorButton variant="contained" style={{width:"100px"}}>회원가입</ColorButton>
+        <BootstrapButton variant="contained" disableRipple="disableRipple" style={{width:"100px"}}>
+            취소
+        </BootstrapButton>
+    </Stack>
+    </LocalizationProvider>
     </form>
 }
