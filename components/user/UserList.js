@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import tableStyles from '../common/styles/table.module.css'
 import Link from 'next/link'
 
-export default function UserList(){
+const UserList = () => {
     const columns = ["UserId", "Password", "Email", "Name", "Phone", "Birth", "Address"]
     const [data, setData] = useState([]);
     const count = data.length;
@@ -51,3 +51,4 @@ export default function UserList(){
       </table>
     );
 }
+export default UserList

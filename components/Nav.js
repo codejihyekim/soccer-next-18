@@ -62,11 +62,11 @@ export default function Nav(){
   useEffect(() => {
     const loginUser = localStorage.getItem("loginUser")
     if (loginUser === null) {
-      setUserUrls(["/user/join","/user/login"])
+      setUserUrls(["/user/userJoin","/user/userLogin"])
       setUserSubTitle(["회원가입","로그인"])
     } else {
-      setUserUrls(["/user/logout","/user/profile","/user/modifyUser","/user/withdrawUser","user/getUsers"])
-      setUserSubTitle(["로그아웃","프로필","회원수정","회원탈퇴","회원목록"])
+      setUserUrls(["/user/UserProfile.js","/user/UserModify.js","/user/UserRemove.js","/user/UserList.js"])
+      setUserSubTitle(["프로필","회원수정","회원탈퇴","회원목록"])
     }
   }, [])
 
@@ -98,8 +98,17 @@ export default function Nav(){
                     break;
     }
   }
-  
-
+  const handleAuth = (value) => {
+    alert('handleAuth '+value)
+    switch(value) {
+      case '회원가입':  window.location.href='/user/userJoin' 
+                      break;
+      case '로그인':  window.location.href='/user/userLogin' 
+                      break;
+      default: window.location.href='/'
+                      break;
+    }
+  }
   return (
     <AppBar position="static" style={{marginBottom:"70px"}}>
       <Container maxWidth="xl">
@@ -163,11 +172,11 @@ export default function Nav(){
                 horizontal: 'right',
               }}
               open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
+              onClose={handleAuth}
             >
               {preSettings.map((setting) => ( //회원가입, 로그인
-                <MenuItem key={setting} onClick={() => handleCloseUserMenu(setting)}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem key={setting} >
+                  <Typography textAlign="center" onClick={() => handleAuth(setting)}>{setting}</Typography>
                 </MenuItem>
               ))}
             </Menu>
